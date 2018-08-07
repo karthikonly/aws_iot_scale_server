@@ -1,0 +1,100 @@
+Features/Stories to finish:
+
+Add jquery support
+Add Bootstrap support
+Configure AWS credentials as ENV variables
+Add home controller with index action stub
+Add action to list and delete certificates
+Add action to list and delete devices
+Add action to list and delete certificates
+Add API to provision certificate from AWS for new gateway
+
+
+Done:
+
+initial commit
+Add mqtt gem
+Add AWS-IOT gem
+Add Root CA Certificate
+
+
+Dummy:
+
+
+require 'mqtt'
+require 'json'
+
+THING_ARN = "arn:aws:iot:us-east-1:683177151963:thing/karthik-thing-0001"
+MQTT_ENDPOINT = "a1n5u982zrd0mu.iot.us-east-1.amazonaws.com"
+# KEY_PREFIX = "8a1330ac50"
+KEY_PREFIX = "dbbec30332"
+PATH_PREFIX = "certs"
+
+def connect
+  client = MQTT::Client.new
+  client.host = MQTT_ENDPOINT
+  client.port = 8883
+  client.ssl = true
+  # client.cert_file = "#{PATH_PREFIX}/#{KEY_PREFIX}-certificate.pem.crt"
+  # client.key_file  = "#{PATH_PREFIX}/#{KEY_PREFIX}-private.pem.key"
+  # client.ca_file   = "#{PATH_PREFIX}/verisign-root-ca.pem"
+  client.cert_file = "#{KEY_PREFIX}-certificate.pem"
+  client.key_file  = "#{KEY_PREFIX}-private.key"
+  client.ca_file   = "#{PATH_PREFIX}/verisign-root-ca.pem"
+  client.connect do |c|
+    c.publish('karthik/data-stream', { message: Time.now.to_s }.to_json, retain = false, qos = 1)
+  end
+  return client
+end
+
+def main
+  client = connect()
+  sleep 3
+  client.disconnect()
+end
+
+
+require 'aws-sdk'
+
+client = Aws::IoT::Client.new(region: 'us-east-1')
+
+resp = client.create_thing({
+    thing_name: "karthik-created",
+    thing_type_name: "karthik-thing-type",
+    attribute_payload: {
+      attributes: {
+        "model-number" => "model-a",
+        "serial-number" => "0002"
+      },
+      merge: false
+    }
+ })
+
+# => #<struct Aws::IoT::Types::CreateThingResponse thing_name="karthik-created",
+# thing_arn="arn:aws:iot:us-east-1:683177151963:thing/karthik-created",
+# thing_id="d94c0e5b-ff8c-426e-b98e-0c52adad60c4">
+
+resp = client.create_keys_and_certificate({
+    set_as_active: true
+})
+filename = resp.certificate_id[0..9]
+IO.write("#{filename}-certificate.pem", resp.certificate_pem)
+IO.write("#{filename}-public.key", resp.key_pair.public_key)
+IO.write("#{filename}-private.key", resp.key_pair.private_key)
+
+# "arn:aws:iot:us-east-1:683177151963:cert/dbbec303325c8c31cf9725bb21a48398147b9ff4f2c6621809e367110e2754b5",
+# "dbbec303325c8c31cf9725bb21a48398147b9ff4f2c6621809e367110e2754b5"
+
+resp = client.attach_policy({
+    policy_name: "karthik-policy",
+    target: "arn:aws:iot:us-east-1:683177151963:cert/dbbec303325c8c31cf9725bb21a48398147b9ff4f2c6621809e367110e2754b5"
+})
+
+resp = client.attach_thing_principal({
+    thing_name: "karthik-created",
+    principal: "arn:aws:iot:us-east-1:683177151963:cert/dbbec303325c8c31cf9725bb21a48398147b9ff4f2c6621809e367110e2754b5"})
+
+# if set as active is initially to false
+resp = client.update_certificate({
+    certificate_id: "dbbec303325c8c31cf9725bb21a48398147b9ff4f2c6621809e367110e2754b5",
+    new_status: "ACTIVE"})

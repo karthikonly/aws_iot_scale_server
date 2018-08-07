@@ -1,24 +1,8 @@
-# README
+# AWS IOT Scale Server
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Application to test scaling of AWS IOT device scaling
 
-Things you may want to cover:
+Simulates 1000+ devices initially. Target is to reach 1 million.
 
-* Ruby version
+Will also provide front end to test command passing.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
