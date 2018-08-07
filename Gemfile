@@ -26,8 +26,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 4.0'
 # Use AWS-SDK for install all AWS library
 gem 'aws-sdk', '~> 3.0'
-# use MQTT gem for talking to AWS-IOT gem
+# Use MQTT gem for talking to AWS-IOT gem
 gem 'mqtt'
+# Use bootstrap
+gem 'bootstrap', '~> 4.1.3'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

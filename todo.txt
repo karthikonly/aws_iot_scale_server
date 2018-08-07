@@ -1,9 +1,6 @@
 Features/Stories to finish:
 
-Add jquery support
-Add Bootstrap support
 Configure AWS credentials as ENV variables
-Add home controller with index action stub
 Add action to list and delete certificates
 Add action to list and delete devices
 Add action to list and delete certificates
@@ -16,6 +13,9 @@ initial commit
 Add mqtt gem
 Add AWS-IOT gem
 Add Root CA Certificate
+Add jquery support
+Add Bootstrap support
+Add home controller with index action stub
 
 
 Dummy:
