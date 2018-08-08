@@ -1,10 +1,16 @@
 Features/Stories to finish:
 
-Configure AWS credentials as ENV variables
-Add action to list and delete certificates
-Add action to list and delete devices
-Add action to list and delete certificates
+Add action to list certificates
 Add API to provision certificate from AWS for new gateway
+
+New Thread to listen to data_stream mqtt
+New API to send command to any device : stub
+
+
+Add action delete things
+Add action to delete certificates
+Add action to list policies
+Add action to delete policies
 
 
 Done:
@@ -16,10 +22,11 @@ Add Root CA Certificate
 Add jquery support
 Add Bootstrap support
 Add home controller with index action stub
+Configure AWS credentials as ENV variables
+Add action to list things
 
 
-Dummy:
-
+Dummy Code:
 
 require 'mqtt'
 require 'json'
@@ -52,11 +59,6 @@ def main
   sleep 3
   client.disconnect()
 end
-
-
-require 'aws-sdk'
-
-client = Aws::IoT::Client.new(region: 'us-east-1')
 
 resp = client.create_thing({
     thing_name: "karthik-created",

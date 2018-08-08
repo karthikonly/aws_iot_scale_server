@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  # http://guides.rubyonrails.org/routing.html
-
   root 'home#index'
 
   get 'home/index'
-
+  resources :things, only: [:index, :destroy]
 end
