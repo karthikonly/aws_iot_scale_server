@@ -1,0 +1,11 @@
+connect:
+  hostname: "http://localhost:3000"
+  provision_endpoint: "/api/get_credentials"
+  directory: "/Users/klakshminarayanan/enphase/aws_iot_scale_server/tmp/cwd"
+
+mqtt:
+  ca_file_path: "/Users/klakshminarayanan/enphase/aws_iot_scale_server/public/root-ca.pem"
+  aws_mqtt_endpoint: "a1n5u982zrd0mu.iot.us-east-1.amazonaws.com"
+  data_stream: "devices/data-stream"
+  command_stream_prefix: "devices/command-stream"
+  response_stream_prefix: "devices/response-stream"

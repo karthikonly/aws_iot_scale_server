@@ -1,0 +1,2 @@
+class ThingCertificate < ApplicationRecord
+end

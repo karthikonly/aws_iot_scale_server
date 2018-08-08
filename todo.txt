@@ -1,9 +1,10 @@
 Features/Stories to finish:
 
-Add API to provision certificate from AWS for new gateway
-New Thread to listen to data_stream mqtt
-New API to send command to any device : stub
+client: thread to pump data to common thread
 
+code provision certificate from AWS
+New API to send command to any device : stub
+New Thread to listen to data_stream mqtt
 Add action delete things
 Add action to delete certificates
 Add action to delete policies
@@ -21,40 +22,12 @@ Configure AWS credentials as ENV variables
 Add action to list things
 Add action to list certificates
 Add action to list policies
+client: create client stub code in public
+client: code to load and process config
+cert provision endpoint stub
+
 
 Dummy Code:
-
-require 'mqtt'
-require 'json'
-
-THING_ARN = "arn:aws:iot:us-east-1:683177151963:thing/karthik-thing-0001"
-MQTT_ENDPOINT = "a1n5u982zrd0mu.iot.us-east-1.amazonaws.com"
-# KEY_PREFIX = "8a1330ac50"
-KEY_PREFIX = "dbbec30332"
-PATH_PREFIX = "certs"
-
-def connect
-  client = MQTT::Client.new
-  client.host = MQTT_ENDPOINT
-  client.port = 8883
-  client.ssl = true
-  # client.cert_file = "#{PATH_PREFIX}/#{KEY_PREFIX}-certificate.pem.crt"
-  # client.key_file  = "#{PATH_PREFIX}/#{KEY_PREFIX}-private.pem.key"
-  # client.ca_file   = "#{PATH_PREFIX}/verisign-root-ca.pem"
-  client.cert_file = "#{KEY_PREFIX}-certificate.pem"
-  client.key_file  = "#{KEY_PREFIX}-private.key"
-  client.ca_file   = "#{PATH_PREFIX}/verisign-root-ca.pem"
-  client.connect do |c|
-    c.publish('karthik/data-stream', { message: Time.now.to_s }.to_json, retain = false, qos = 1)
-  end
-  return client
-end
-
-def main
-  client = connect()
-  sleep 3
-  client.disconnect()
-end
 
 resp = client.create_thing({
     thing_name: "karthik-created",

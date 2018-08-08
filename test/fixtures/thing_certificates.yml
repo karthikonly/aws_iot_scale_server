@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  serial_number: MyString
+  public_key: MyText
+  private_key: MyText
+  certificate: MyText
+
+two:
+  serial_number: MyString
+  public_key: MyText
+  private_key: MyText
+  certificate: MyText
