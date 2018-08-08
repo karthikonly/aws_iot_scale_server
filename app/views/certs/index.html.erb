@@ -1,0 +1,19 @@
+<div class="table-responsive">
+  <h1>List of Certs</h1>
+  <table class="table-striped table-condensed table-bordered">
+    <tr>
+      <th>Id</th>
+      <th>arn</th>
+      <th>Status</th>
+      <th>Created Date</th>
+    </tr>
+    <% @certs.each do |cert| %>
+      <tr>
+        <td><%= cert.certificate_id %></td>
+        <td><%= cert.certificate_arn %></td>
+        <td><%= cert.status %></td>
+        <td><%= cert.creation_date %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
