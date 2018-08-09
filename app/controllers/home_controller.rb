@@ -4,6 +4,11 @@ class HomeController < ApplicationController
     @serials = ThingCertificate.pluck(:serial_number)
   end
 
+  def test_websocket
+    ActionCable.server.broadcast "status", message: "hello world"
+    render json: {status: 'ok'}
+  end
+
   def get_credentials
     serial = params[:serial_number]
 

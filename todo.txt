@@ -1,5 +1,5 @@
 Features/Stories to finish:
-websocket integration with redis data periodically
+thread to send redis data periodically in websocket
 Show status of each device in simulation
 connect frontend to issue_command api
 
@@ -30,3 +30,4 @@ New Thread to listen to data_stream mqtt
 New API to send command to any device : stub
 code provision certificate from AWS
 Basic frontend to monitor in bootstrap/Jquery
+Basic websocket integration
