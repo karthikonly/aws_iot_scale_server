@@ -1,6 +1,7 @@
 Features/Stories to finish:
-Basic frontend to monitor in bootstrap/Jquery
-websocket integration with redis data periodi
+websocket integration with redis data periodically
+Show status of each device in simulation
+connect frontend to issue_command api
 
 Later:
 Add action delete things
@@ -28,4 +29,4 @@ redis integration
 New Thread to listen to data_stream mqtt
 New API to send command to any device : stub
 code provision certificate from AWS
-
+Basic frontend to monitor in bootstrap/Jquery

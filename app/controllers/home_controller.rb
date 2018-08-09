@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 
   def index
+    @serials = ThingCertificate.pluck(:serial_number)
   end
 
   def get_credentials

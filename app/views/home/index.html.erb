@@ -1,2 +1,21 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<br/><br/><br/>
+
+<% rows = (@serials.count/20)+1 %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="20">List of devices in simulation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% rows.times do |r| %>
+      <tr>
+        <% (r..(r+20)).each do |c| %>
+          <td>
+            <%= button_tag(@serials[c], type: 'button', class: 'btn-primary device-btn') if c < @serials.count %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
