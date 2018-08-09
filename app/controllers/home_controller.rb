@@ -12,4 +12,13 @@ class HomeController < ApplicationController
       # TODO: implement the aws API calls for creating a certificate
     end
   end
+
+  def issue_command
+    serial = params[:serial_number]
+    command = params[:command] || "command-001"
+    command_channel = "devices/command-stream/#{serial}"
+    $redis.hset serial, :command, command
+    $redis.hset serial, :issue_time, Time.now.to_s
+    $mqtt_client.mqtt_client.publish(command_channel, {command: command}.to_json, retain = false, qos = 1)
+  end
 end

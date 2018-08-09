@@ -1,16 +1,13 @@
 Features/Stories to finish:
-
-client: thread to pump data to common thread
-
+JQuery basic frontend to monitor
 code provision certificate from AWS
-New API to send command to any device : stub
-New Thread to listen to data_stream mqtt
+
+Later:
 Add action delete things
 Add action to delete certificates
 Add action to delete policies
 
 Done:
-
 initial commit
 Add mqtt gem
 Add AWS-IOT gem
@@ -25,7 +22,11 @@ Add action to list policies
 client: create client stub code in public
 client: code to load and process config
 cert provision endpoint stub
-
+client: thread to pump data to common thread
+client: thread to process
+redis integration
+New Thread to listen to data_stream mqtt
+New API to send command to any device : stub
 
 Dummy Code:
 

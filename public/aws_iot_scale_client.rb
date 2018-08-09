@@ -88,6 +88,7 @@ def response_thread
     msg = JSON.parse(message)
     msg['serial_number'] = serial
     msg['recvd_time'] = Time.now.to_s
+    msg['message'] = "command received from: #{topic} command: #{msg['command']}"
     $client.publish(response_stream, msg.to_json, retain = false, qos = 1)
     p "response data: #{msg}"
   end
