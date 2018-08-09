@@ -1,7 +1,8 @@
 Features/Stories to finish:
-thread to send redis data periodically in websocket
-Show status of each device in simulation
+Show status of each device in simulation (active sending/dormant)
+popup to show status and commands
 connect frontend to issue_command api
+show status of the command response
 
 Later:
 Add action delete things
@@ -31,3 +32,4 @@ New API to send command to any device : stub
 code provision certificate from AWS
 Basic frontend to monitor in bootstrap/Jquery
 Basic websocket integration
+thread to send redis data periodically in websocket

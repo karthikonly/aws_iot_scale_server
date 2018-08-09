@@ -1,4 +1,4 @@
 function websocket_client(data) {
-    console.log(data.message);
-    $('#debug-area').append(data.message);
+    // console.log(data.serial_number);
+    $('#debug-area').append(data.serial_number);
 }

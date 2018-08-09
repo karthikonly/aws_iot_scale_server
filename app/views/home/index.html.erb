@@ -12,7 +12,7 @@
       <tr>
         <% (r..(r+20)).each do |c| %>
           <td>
-            <%= button_tag(@serials[c], type: 'button', class: 'btn-primary device-btn') if c < @serials.count %>
+            <%= button_tag(@serials[c], type: 'button', class: 'btn-primary device-btn', id: @serials[c]) if c < @serials.count %>
           </td>
         <% end %>
       </tr>
@@ -20,5 +20,4 @@
   </tbody>
 </table>
 
-<textarea id="debug-area">
-</textarea>
+<textarea id="debug-area"></textarea>
