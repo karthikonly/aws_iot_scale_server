@@ -10,17 +10,52 @@ function websocket_client(data) {
     }
 
     var newClass = "";
-    var timestamp = new Date(data.timestamp);
+    var timenow = new Date();
     if (data.timestamp == null) {
         // client never ran
          newClass = "btn-default";
-    } else if (new Date() - timestamp > 30*1000) {
-        // client ran before 30 seconds
-        newClass = "btn-danger";
     } else {
-        // client is workimg
-        newClass = "btn-success";
+        var timestamp = new Date(data.timestamp);
+        if (timenow - timestamp > 30 * 1000) {
+            // client ran before 30 seconds
+            newClass = "btn-danger";
+        } else {
+            // client is workimg
+            newClass = "btn-success";
+        }
     }
+
+    // handle command and response status
+    if (data.issue_time == null) {
+        // do nothing. no command ever issued
+    } else {
+        var command_timestamp = new Date(data.issue_time);
+        // if command was issued within last 5 minutes, bother put status, otherwise dont bother
+        if (timenow - command_timestamp < 60*1000) {
+            if (data.response_time == null) {
+                // response not received yet. put warning
+                newClass = "btn-warning";
+            } else {
+                var response_timestamp = new Date(data.response_time);
+                if (response_timestamp >= command_timestamp) {
+                    newClass = "btn-primary";
+                } else {
+                    newClass = "btn-warning";
+                }
+            }
+        }
+    }
+
     $(elem).removeClass("btn-primary btn-default btn-success btn-info btn-warning btn-danger");
     $(elem).addClass(newClass);
 }
+
+$(function() {
+    $(".device-btn").click(function(event) {
+        var id = $(this).attr('id');
+        $.post("/api/issue_command", { serial_number: id, command: "test command" } )
+            .done(function( data ) {
+                // console.log("issued test command to " + id);
+            });
+    });
+});

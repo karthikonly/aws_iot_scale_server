@@ -1,17 +1,13 @@
 Features/Stories to finish:
-scale clients to 100
-
-popup to show status and commands
-connect frontend to issue_command api
-show status of the command response
-
-API to create client
-create clients from homepage
+scale to 10k devices in aws-ec2
 
 Later:
+popup to show status and commands
 Add action delete things
 Add action to delete certificates
 Add action to delete policies
+API to create client
+create clients from homepage
 
 Done:
 initial commit
@@ -39,3 +35,7 @@ Basic websocket integration
 thread to send redis data periodically in websocket
 Show status of each device in simulation (never/sent,sending,dormant)
 create element if not present
+scale clients to 200
+css fixes
+connect frontend to issue_command api
+show status of the command response

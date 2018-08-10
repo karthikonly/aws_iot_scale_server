@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @serials = ThingCertificate.pluck(:serial_number)
+    @serials = ThingCertificate.pluck(:serial_number).sort
   end
 
   def test_websocket
