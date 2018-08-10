@@ -1,8 +1,12 @@
 Features/Stories to finish:
-Show status of each device in simulation (active sending/dormant)
+scale clients to 100
+
 popup to show status and commands
 connect frontend to issue_command api
 show status of the command response
+
+API to create client
+create clients from homepage
 
 Later:
 Add action delete things
@@ -33,3 +37,5 @@ code provision certificate from AWS
 Basic frontend to monitor in bootstrap/Jquery
 Basic websocket integration
 thread to send redis data periodically in websocket
+Show status of each device in simulation (never/sent,sending,dormant)
+create element if not present

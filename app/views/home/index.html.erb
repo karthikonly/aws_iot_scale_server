@@ -1,23 +1,7 @@
 <br/><br/><br/>
 
-<% rows = (@serials.count/20)+1 %>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th colspan="20">List of devices in simulation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% rows.times do |r| %>
-      <tr>
-        <% (r..(r+20)).each do |c| %>
-          <td>
-            <%= button_tag(@serials[c], type: 'button', class: 'btn-primary device-btn', id: @serials[c]) if c < @serials.count %>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<textarea id="debug-area"></textarea>
+<div class="container" id="client-status">
+  <% @serials.each do |serial| %>
+    <%= button_tag(serial, type: 'button', class: 'btn-primary device-btn', id: serial) %>
+  <% end %>
+</div>
